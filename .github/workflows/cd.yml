@@ -29,9 +29,13 @@ jobs:
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: notely-486021
 
-      - name: Use gcloud CL
-        run: gcloud info
+      - name: Check gcloud config
+        run: |
+          gcloud config list
+          gcloud projects describe notely-486021
 
       - name: Build Docker image and push
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-486021/notely-ar-repo/notely:latest .
